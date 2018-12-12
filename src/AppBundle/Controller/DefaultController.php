@@ -28,10 +28,10 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/ubicacion", name="ubicacion")
+     * @Route("/ubicacion/{id}", name="ubicacion")
      */
-    public function ubicacionAction(Request $request){
+    public function ubicacionAction(Request $request, $id="todos"){
         $saludo = "Hola desde nosotros";
-        return $this->render('bar/ubicacion.html.twig', array("saludo"=>$saludo));
+        return $this->render('bar/ubicacion.html.twig', array("idLocalidad"=>$id));
     }
 }

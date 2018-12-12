@@ -12,6 +12,7 @@
             <small>Encuentranos en:</small>
         </h1>
 
+        {%  if idLocalidad == "gye" or idLocalidad == "todos" %}
         <!-- Content Row -->
         <div class="row">
             <!-- Map Column -->
@@ -41,7 +42,9 @@
             </div>
         </div>
         <!-- /.row -->
+        {%  endif %}
 
+        {%  if idLocalidad == "uio" or idLocalidad == "todos" %}
         <!-- Content Row -->
         <div class="row">
             <!-- Map Column -->
@@ -71,7 +74,9 @@
             </div>
         </div>
         <!-- /.row -->
+        {%  endif %}
 
+        {%  if idLocalidad == "cue" or idLocalidad == "todos" %}
         <!-- Content Row -->
         <div class="row">
             <!-- Map Column -->
@@ -101,6 +106,7 @@
             </div>
         </div>
         <!-- /.row -->
+        {%  endif %}
 
     </div>
 
