@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Ubicación {% endblock %}
+
+{% block body %}
+
+    <!-- Page Content -->
+    <div class="container">
+
+        <!-- Page Heading/Breadcrumbs -->
+        <h1 class="mt-4 mb-3">Todos nuestros platillos </h1>
+
+        <!-- Portfolio Item Row -->
+        <div class="row">
+
+            <div class="col-md-8">
+                <img class="img-fluid" src="http://placehold.it/750x500" alt="">
+            </div>
+
+            <div class="col-md-4">
+                <h3 class="my-3">Descripción del platillo</h3>
+                <p> {{ platillo.nombre }} </p>
+                <p> {{ platillo.descripcion }} </p>
+                <h3 class="my-3">Ingredientes</h3>
+                <ul>
+                    <li> {{ platillo.ingredientes }} </li>
+                    {#<li>Dolor Sit Amet</li>
+                    <li>Consectetur</li>
+                    <li>Adipiscing Elit</li>#}
+                </ul>
+            </div>
+
+        </div>
+        <!-- /.row -->
+
+        <!-- Related Projects Row -->
+        <h3 class="my-4">Otros Platillos</h3>
+
+        <div class="row">
+            {% for platillo in listaPlatillos  %}
+                {% if platillo.id != id %}
+                    <div class="col-md-3 col-sm-6 mb-4">
+                        <a href="#">
+                            <img class="img-fluid" src="http://placehold.it/500x300" alt="">
+                        </a>
+                        <p> {{ platillo.nombre }} </p>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <!-- /.row -->
+
+    </div>
+    <!-- /.container -->
+
+{% endblock %}
