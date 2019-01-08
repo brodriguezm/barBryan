@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Platillo;
+use AppBundle\Form\PlatilloType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -18,12 +19,21 @@ class GestionPlatilloController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $repository = $this->getDoctrine()->getRepository(Platillo::class);
-        $platillos = $repository->findAll();
+        $objPlatilo = new Platillo();
+        //Se crea el formulario
+        $form = $this->createForm(PlatilloType::class, $objPlatilo);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+            //Rellenamos el objeto Platillo
+            $objPlatilo = $form->getData();
+            dump($objPlatilo);die();
+        }
 
         // replace this example code with whatever you need
-        return $this->render('bar/index.html.twig', array(
-            "platillos" => $platillos
+        return $this->render('platillo/nuevoPlatillo.html.twig', array(
+            "form" => $form->createView()
         ));
     }
 }
