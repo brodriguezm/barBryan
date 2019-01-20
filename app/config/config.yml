@@ -7,6 +7,7 @@ imports:
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: en
+    uploads_directory: '%kernel.project_dir%/web/uploads/img'
 
 framework:
     #esi: ~
@@ -35,6 +36,8 @@ framework:
 twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
+    globals:
+        path_img: 'uploads/img/'
 
 # Doctrine Configuration
 doctrine:

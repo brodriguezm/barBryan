@@ -10,10 +10,8 @@
 
 {%- block form_widget_simple -%}
     {%- set type = type|default('text') -%}
-    {% if type != "file" %}
         <input type="{{ type }}" class="form-control" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
-    {% else %}
-            <input type="{{ type }}" class="form-control" onchange="validateImgPlatillo(event)" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
+    {% if type == "file" %}
             <img src="" id="platilloThumb"  width="150" alt="">
     {% endif %}
 

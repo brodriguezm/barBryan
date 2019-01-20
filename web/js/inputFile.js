@@ -14,7 +14,9 @@ function validateFormatImg(file){
 
 function validateImgPlatillo(event){
     var file = event.target.files[0];
-    if(validateFormatImg(file))
+    if(validateFormatImg(file)){
         var imgPlatillo = document.getElementById('platilloThumb');
         imgPlatillo.src = window.URL.createObjectURL(file);
+    }
+
 }

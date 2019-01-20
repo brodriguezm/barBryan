@@ -2,34 +2,34 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\Platillo;
-use AppBundle\Form\PlatilloType;
+use AppBundle\Entity\Categoria;
+use AppBundle\Form\CategoriaType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/platillo")
+ * @Route("/categoria")
  */
 
-class GestionPlatilloController extends Controller
+class CategoriaController extends Controller
 {
     /**
-     * @Route("/nuevo-platillo", name="nuevo-platillo")
+     * @Route("/nueva-categoria", name="nueva-categoria")
      */
     public function indexAction(Request $request)
     {
-        $objPlatilo = new Platillo();
+        $objCategoria = new Categoria();
         //Se crea el formulario
-        $form = $this->createForm(PlatilloType::class, $objPlatilo);
+        $form = $this->createForm(CategoriaType::class, $objCategoria);
 
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
             //Rellenamos el objeto Platillo
-            $objPlatilo = $form->getData();
+            $objCategoria = $form->getData();
 
-            $file = $objPlatilo->getFoto();
+            $file = $objCategoria->getFoto();
             //Cambiamos el nombre del archivo con la encriptacion md5
             $fileName = $this->generateUniqueFileName().'.'.$file->guessExtension();
             //Movemos la imagen al fichero configurado dentro del proyecto
@@ -38,16 +38,13 @@ class GestionPlatilloController extends Controller
                 $fileName
             );
 
-            $objPlatilo->setFoto($fileName);
-            $objPlatilo->setNombre($objPlatilo->getNombre());
-            $objPlatilo->setDescripcion($objPlatilo->getDescripcion());
-            $objPlatilo->setIngredientes($objPlatilo->getIngredientes());
-            $objPlatilo->setFechaCreacion(new \DateTime());
-            $objPlatilo->setTop($objPlatilo->getTop());
+            $objCategoria->setFoto($fileName);
+            $objCategoria->setNombre($objCategoria->getNombre());
+            $objCategoria->setDescripcion($objCategoria->getDescripcion());
 
             //Se almacena el platillo
             $em = $this->getDoctrine()->getManager();
-            $em->persist($objPlatilo);
+            $em->persist($objCategoria);
             $em->flush();
 
             //dump($objPlatilo);die();
@@ -56,7 +53,7 @@ class GestionPlatilloController extends Controller
         }
 
         // replace this example code with whatever you need
-        return $this->render('platillo/nuevoPlatillo.html.twig', array(
+        return $this->render('categoria/nuevo.html.twig', array(
             "form" => $form->createView()
         ));
     }

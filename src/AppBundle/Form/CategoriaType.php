@@ -11,7 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
-class PlatilloType extends AbstractType
+class CategoriaType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -21,8 +21,6 @@ class PlatilloType extends AbstractType
                 'attr' => array('onChange' => 'validateImgPlatillo(event)')))
             ->add('nombre', TextType::class)
             ->add('descripcion', TextareaType::class)
-            ->add('ingredientes', CKEditorType::class)
-            ->add('top', CheckboxType::class, array('label' => 'Platillo especial'))
             ->add('guardar', SubmitType::class, array('label' => 'Crear Platillo'))
         ;
     }

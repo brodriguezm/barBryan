@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Platillo;
+use AppBundle\Entity\Categoria;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -15,7 +16,8 @@ class DefaultController extends Controller
     public function indexAction(Request $request)
     {
         $repository = $this->getDoctrine()->getRepository(Platillo::class);
-        $platillos = $repository->findAll();
+        //$platillos = $repository->findAll();
+        $platillos = $repository->findByTop(1);
 
         // replace this example code with whatever you need
         return $this->render('bar/index.html.twig', array(
@@ -68,6 +70,18 @@ class DefaultController extends Controller
             "id" => $id,
             "platillo" => $objPlatillo,
             "listaPlatillos" => $platillos
+        ));
+    }
+
+    /**
+     * @Route("/categorias", name="categorias")
+     */
+    public function categoriasAction(Request $request){
+        $repository = $this->getDoctrine()->getRepository(Categoria::class);
+        $categorias = $repository->findAll();
+
+        return $this->render('categoria/index.html.twig', array(
+            "categoria" => $categorias
         ));
     }
 }
