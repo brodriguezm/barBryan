@@ -135,5 +135,46 @@ class Categoria
     {
         return $this->foto;
     }
-}
 
+    /**
+     * Add platillo
+     *
+     * @param \AppBundle\Entity\Platillo $platillo
+     *
+     * @return Categoria
+     */
+    public function addPlatillo(\AppBundle\Entity\Platillo $platillo)
+    {
+        $this->platillos[] = $platillo;
+
+        return $this;
+    }
+
+    /**
+     * Remove platillo
+     *
+     * @param \AppBundle\Entity\Platillo $platillo
+     */
+    public function removePlatillo(\AppBundle\Entity\Platillo $platillo)
+    {
+        $this->platillos->removeElement($platillo);
+    }
+
+    /**
+     * Get platillos
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPlatillos()
+    {
+        return $this->platillos;
+    }
+
+    //Funcion
+
+    public function __toString()
+    {
+        // TODO: Implement __toString() method.
+        return $this->nombre;
+    }
+}

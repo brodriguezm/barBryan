@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Ingrediente;
 use AppBundle\Entity\Platillo;
 use AppBundle\Form\PlatilloType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -37,11 +38,17 @@ class GestionPlatilloController extends Controller
                 $this->getParameter('uploads_directory'),
                 $fileName
             );
-
+            //dump($objPlatilo->getIngredientes());die();
             $objPlatilo->setFoto($fileName);
             $objPlatilo->setNombre($objPlatilo->getNombre());
             $objPlatilo->setDescripcion($objPlatilo->getDescripcion());
-            $objPlatilo->setIngredientes($objPlatilo->getIngredientes());
+            /*foreach ($objPlatilo->getIngredientes() as $ingrediente){
+                $newIngrediente = new Ingrediente();
+                $newIngrediente->setId($ingrediente->getId());
+                $newIngrediente->setNombre($ingrediente->getNombre());
+                $objPlatilo->addIngrediente($ingrediente);
+            }*/
+            //$objPlatilo->addIngrediente($objPlatilo->getIngredientes());
             $objPlatilo->setFechaCreacion(new \DateTime());
             $objPlatilo->setTop($objPlatilo->getTop());
 

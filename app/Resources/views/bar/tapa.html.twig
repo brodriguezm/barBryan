@@ -27,10 +27,9 @@
                 <p> {{ platillo.descripcion }} </p>
                 <h3 class="my-3">Ingredientes</h3>
                 <ul>
-                    <li> {{ platillo.ingredientes }} </li>
-                    {#<li>Dolor Sit Amet</li>
-                    <li>Consectetur</li>
-                    <li>Adipiscing Elit</li>#}
+                    {% for platillo in platillo.ingredientes %}
+                        <li> {{ platillo.nombre }} </li>
+                    {% endfor %}
                 </ul>
             </div>
 

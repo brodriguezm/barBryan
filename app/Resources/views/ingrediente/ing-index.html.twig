@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Ingrediente {% endblock %}
+
+{% block body %}
+
+    <!-- Page Content -->
+    <div class="container">
+        <!-- Page Heading/Breadcrumbs -->
+        <h1 class="mt-4 mb-3">Ingredientes</h1>
+
+        <!-- Portfolio Item Row -->
+        <div class="row">
+
+            <div class="col-md-8">
+                {% for ingrediente in ingredientes %}
+                    <p> {{ ingrediente }} </p>
+                {% endfor %}
+            </div>
+
+        </div>
+    </div>
+
+    <!-- /.container -->
+
+{% endblock %}

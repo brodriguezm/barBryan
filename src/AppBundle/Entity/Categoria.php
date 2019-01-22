@@ -169,4 +169,12 @@ class Categoria
     {
         return $this->platillos;
     }
+
+    //Funcion
+
+    public function __toString()
+    {
+        // TODO: Implement __toString() method.
+        return $this->nombre;
+    }
 }

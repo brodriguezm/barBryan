@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Ingrediente;
 use AppBundle\Entity\Platillo;
 use AppBundle\Entity\Categoria;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -57,13 +58,11 @@ class DefaultController extends Controller
             }
 
             if($platillo->getId() == $id){
-                $objPlatillo->setNombre($platillo->getNombre());
-                $objPlatillo->setDescripcion($platillo->getDescripcion());
-                $objPlatillo->setIngredientes($platillo->getIngredientes());
-                $objPlatillo->setFoto($platillo->getFoto());
-                $objPlatillo->setTop($platillo->getTop());
+                $objPlatillo = $repository->find($id);
                 break;
             }
+
+
         }
 
         return $this->render('bar/tapa.html.twig', array(
@@ -80,8 +79,22 @@ class DefaultController extends Controller
         $repository = $this->getDoctrine()->getRepository(Categoria::class);
         $categorias = $repository->findAll();
 
+        //dump($categorias);die();
+
         return $this->render('categoria/index.html.twig', array(
-            "categoria" => $categorias
+            "categoria" => $categorias[0]
+        ));
+    }
+
+    /**
+     * @Route("/ingredientes", name="ingredientes")
+     */
+    public function ingredientesAction(Request $request){
+        $repository = $this->getDoctrine()->getRepository(Ingrediente::class);
+        $ingredientes = $repository->findAll();
+
+        return $this->render('ingrediente/ing-index.html.twig', array(
+            "ingredientes" => $ingredientes
         ));
     }
 }
