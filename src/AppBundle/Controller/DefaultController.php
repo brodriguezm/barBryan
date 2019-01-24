@@ -17,8 +17,15 @@ class DefaultController extends Controller
     public function indexAction(Request $request)
     {
         $repository = $this->getDoctrine()->getRepository(Platillo::class);
-        //$platillos = $repository->findAll();
-        $platillos = $repository->findByTop(1);
+        //$platillos = $repository->findByTop(1);
+
+        $query = $repository->createQueryBuilder('t')
+            ->where('t.top = 1')
+            ->setFirstResult(0)
+            ->setMaxResults(2)
+            ->getQuery();
+
+        $platillos = $query->getResult();
 
         // replace this example code with whatever you need
         return $this->render('bar/index.html.twig', array(
